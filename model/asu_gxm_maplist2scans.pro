@@ -1,6 +1,7 @@
 pro asu_gxm_maplist2scans, maplist, out_data, out_index, xarc, freqs = freqs, freq_set = freq_set $
                          , pos_angle = pos_angle, visstep = visstep $
                          , scans = scans, subtr = subtr
+; freqs, freq_set in Hz
 
 asu_gxm_maplist2data, maplist, data, index, freqs = freqs, freq_set = freq_set
 asu_gxm_calc_model_data, data, index $
