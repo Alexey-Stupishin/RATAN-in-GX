@@ -1,4 +1,5 @@
-pro asu_gxm_maplist2data, map, data, index, freqs = freqs, freq_set = freq_set
+pro asu_gxm_maplist2data, map, data, index, freqs = freqs, freq_set = freq_set, tolerance = tolerance
+compile_opt idl2
 
 data = !NULL
 index = !NULL
@@ -14,7 +15,9 @@ endif
 
 nlist = rmap.Count()
 
-sz = size(map[0].data)
+asu_gxm_get_index, rmap[0], index0
+sz = size(rmap[0].data)
+
 for k = 0, nlist-1 do begin
     map_k = rmap[k]
     if data eq !NULL then begin
@@ -27,6 +30,6 @@ for k = 0, nlist-1 do begin
     index[k] = index1    
 endfor
 
-asu_gxm_freq_filter, index, data, freqs = freqs, freq_set = freq_set
+asu_gxm_freq_filter, index, data, freqs = freqs, freq_set = freq_set, tolerance = tolerance
 
 end

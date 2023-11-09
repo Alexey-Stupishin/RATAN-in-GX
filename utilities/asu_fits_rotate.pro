@@ -1,5 +1,11 @@
 pro asu_fits_rotate, data, index, alpha, out_data, out_index, missing = missing
 
+if alpha eq 0 then begin
+    out_data = data
+    out_index = index
+    return
+endif
+
 if n_elements(missing) eq 0 then missing = 0
 
 ca = cos(alpha*!dtor)
@@ -13,7 +19,9 @@ out_index = index
 for k = 0, n3-1 do begin
     out_data[*,*,k] = rot(data[*,*,k], alpha, missing = missing)
     out_index[k].xcen = index[k].xcen*ca - index[k].ycen*sa
+    out_index[k].xc = out_index[k].xcen
     out_index[k].ycen = index[k].ycen*ca + index[k].xcen*sa
+    out_index[k].yc = out_index[k].ycen
     out_index[k].crpix1 = out_index[k].xcen/out_index[k].cdelt1 + (sz[1]-1)/2d 
     out_index[k].crpix2 = out_index[k].ycen/out_index[k].cdelt2 + (sz[2]-1)/2d 
 endfor

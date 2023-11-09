@@ -1,4 +1,5 @@
 pro rtu_get_ratan_hpbw, freqs, vert, horz, mode = mode, c = c, b = b
+; freqs in Hz
 
 lamb = 29979245800d/freqs
 vert = 7.5d * 60d * lamb
