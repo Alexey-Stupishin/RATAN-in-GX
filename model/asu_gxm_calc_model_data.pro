@@ -12,11 +12,11 @@
 ;   xarc       (1-D real)       - positions of scan points (arcsec)
 ;   
 ; Parameters optional (in):
-;   beam_mode  (integer)        - RATAN beam type (see mode list in rtu_get_ratan_hpbw.pro), default = 8 (beam with lobes)
+;   beam_mode  (integer)        - RATAN beam type, default = 3 (other modes will be specified)
 ;   scan_lim   (2-elem. real)   - limits for scan calculation (arcsec). If omitted, scan limits are the same as (maybe rotated) map limits on X-axis.
-;   pos_angle  (double)         - RATAN position angle (default = 0). See asu_ratan_position_angle.pro, asu_ratan_position_angle_by_fits.pro.
+;   pos_angle  (real)           - RATAN position angle (default = 0). See asu_ratan_position_angle.pro, asu_ratan_position_angle_by_fits.pro.
 ;                                 If maps in 'maplist' are already rotated to the RATAN position angle, should be omitted or set to 0.
-;   subtr      (3-D double)     - if specified, shouild be of the same size as radiomaps (1,2-D - coordinates, 3-D - frequencies). Will be subtract
+;   subtr      (3-D real)       - if specified, shouild be of the same size as radiomaps (1,2-D - coordinates, 3-D - frequencies). Will be subtract
 ;                                 from the maps in 'maplist' before scan calculation
 ;
 ; Parameters optional (out):
@@ -32,7 +32,7 @@
 ;
 ;--------------------------------------------------------------------------;
 ;             Here comes the Sun, and I say                                ;
-;     \|/        It's alright                                     \|/      ;
+;     \|/     It's alright                                        \|/      ;
 ;    --O--                                                       --O--     ;
 ;     /|\                                         The Beatles     /|\      ;
 ;                                          "Abbey Road", 1969              ;

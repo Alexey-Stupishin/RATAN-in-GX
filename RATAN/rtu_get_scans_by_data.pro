@@ -1,7 +1,7 @@
 function rtu_get_scans_by_data, data, index, freqs, xarc, scan_lim = scan_lim, beam_mode = beam_mode
 compile_opt idl2
 
-default, beam_mode, 8
+default, beam_mode, 3
 
 sz = size(data)
 if sz[0] eq 2 then sz[3] = 1
