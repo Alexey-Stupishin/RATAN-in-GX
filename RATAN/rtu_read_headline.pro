@@ -34,7 +34,7 @@ end
 function rtu_read_headline_key_string, line, psect, sect, key, value
 
 found = 0
-pattern = '# +([.a-zA-Z0-9_-]+) += +(.*)'
+pattern = '# +([.a-zA-Z0-9_-]+) *= *(.*)'
 supsect = 'PAR'
 pattpar = supsect + '.(.*)'
 if stregex(line, pattern, /boolean) then begin

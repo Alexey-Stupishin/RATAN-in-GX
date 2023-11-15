@@ -56,7 +56,7 @@ while ~eof(unit) do begin
     readf, unit, line
     case fstate of
         'header': begin
-            cstate = spectr_ratan_read_headline(line, sect, key, value)
+            cstate = rtu_read_headline(line, sect, key, value)
             if n_elements(verbose) gt 0 && verbose then print, sect, '.', key, ' = ', value
             if strcmp(sect, 'MAIN') then begin
                 index = create_struct(key, value, index)
