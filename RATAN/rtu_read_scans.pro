@@ -6,6 +6,9 @@
 ; Parameters required (in):
 ;   filename    (string)       - RATAN scans data filename
 ;
+; Parameters optional (in):
+;   swapRL      (integer, key) - if set, swap left and right scans
+;
 ; Parameters required (out):
 ;   scans_R     (2-D double)   - observed scans, R-polarisation (sfu/arcsec). 1-D - scans themselves, 2-D - frequencies
 ;   scans_L     (2-D double)   - observed scans, L-polarisation (sfu/arcsec). 1-D - scans themselves, 2-D - frequencies
@@ -17,7 +20,7 @@
 ;   date_obs    (string)       - observation date/time
 ;   index       (struct)       - data index (incl. CDELT1, CRVAL1, CRPIX1, NAXIS1)
 ;   parstr      (struct)       - parameters set used for data preparation (internal use)
-;   verbose     (integer)      - if set, forces header info console output
+;   verbose     (integer, key) - if set, forces header info console output
 ;   
 ; Comments:
 ;   Please note that quiet Sun level was subtracted!
@@ -37,8 +40,9 @@
 ;-------------------------------------------------------------------------------------------------
 pro rtu_read_scans, filename $ ; in
                   , scans_R, scans_L, xarc, freqs, pos_angle $ ; out
-                  , date_obs = date_obs, index = index, parstr = parstr $
-                  , verbose = verbose 
+                  , swapRL = swapRL $ ; optional in
+                  , date_obs = date_obs, index = index, parstr = parstr $ ; optional out
+                  , verbose = verbose ; optional out
 compile_opt idl2
 
 openr, unit, filename, /GET_LUN 
@@ -52,18 +56,20 @@ freqs = !NULL
 index = !NULL
 parstr = !NULL
 offset = 0
+shift_hmi = 0
 while ~eof(unit) do begin
     readf, unit, line
     case fstate of
         'header': begin
             cstate = rtu_read_headline(line, sect, key, value)
             if n_elements(verbose) gt 0 && verbose then print, sect, '.', key, ' = ', value
-            if strcmp(sect, 'MAIN') then begin
+            if strcmp(strupcase(sect), 'MAIN') then begin
                 index = create_struct(key, value, index)
-                if strcmp(key, 'N_FREQS') then n_freqs = fix(value)
-                if strcmp(key, 'N_POINTS') then n_points = fix(value)
+                if strcmp(strupcase(key), 'N_FREQS') then n_freqs = fix(value)
+                if strcmp(strupcase(key), 'N_POINTS') then n_points = fix(value)
+                if strcmp(strupcase(key), 'SHIFT_HMI') then shift_hmi = value
             endif
-            if strcmp(sect, 'PAR') then begin
+            if strcmp(strupcase(sect), 'PAR') then begin
                 parstr = create_struct(key, value, parstr)
             endif
             if cstate eq -1 then begin ; read data header
@@ -84,7 +90,7 @@ while ~eof(unit) do begin
         end
         else: begin
             out = double(strsplit(line, ' ', /EXTRACT))
-            xarc[cnt] = out[0] + offset
+            xarc[cnt] = out[0] + offset + shift_hmi
             for k = 0, n_freqs-1 do begin
                 scans_R[cnt, k] = out[3*k + 1]
                 scans_L[cnt, k]  = out[3*k + 2]
@@ -94,6 +100,12 @@ while ~eof(unit) do begin
         end
     endcase
 endwhile
+
+if keyword_set(swapRL) && swapRL then begin
+    foo = scans_R
+    scans_R = scans_L
+    scans_L = foo
+endif
 
 index = create_struct('NAXIS', 2, index)
 index = create_struct('NAXIS1', n_points, index)
