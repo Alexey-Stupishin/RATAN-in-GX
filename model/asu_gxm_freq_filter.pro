@@ -3,7 +3,7 @@ compile_opt idl2
 
 sz = size(data)
 
-default, tolerance, 1d-2
+default, tolerance, 0.15d
 
 freq_set = index.freq * 1d9
 n = n_elements(freqs)
