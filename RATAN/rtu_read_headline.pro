@@ -20,8 +20,8 @@ found = 0
 p = strpos(line, sample)
 if p ge 0 then begin
     p += strlen(sample)
-    sect = psect
-    key = pkey
+    sect = strupcase(psect)
+    key = strupcase(pkey)
     value = rtu_read_headline_try_convert(strtrim(strmid(line, p), 2))
     found = 1
 endif
@@ -47,6 +47,8 @@ if stregex(line, pattern, /boolean) then begin
         sect = psect
         key = expr[1]
     endelse
+    sect = strupcase(sect)
+    key = strupcase(key)
     value = strtrim(expr[2])
     if ~strcmp(key, 'DATE-OBS') and ~strcmp(key, 'TIME-OBS') then value = rtu_read_headline_try_convert(value)
     key = strreplace(key, '-', '_')
