@@ -54,9 +54,7 @@ if data eq !NULL then begin
     return
 endif
 
-if n_elements(pos_angle) ne 0 then begin
-    asu_fits_rotate, data, index, pos_angle, out_data, out_index
-endif
+if n_elements(pos_angle) ne 0 && pos_angle ne 0 then asu_fits_rotate, data, index, pos_angle, out_data, out_index
 if n_elements(subtr) ne 0 then out_data -= subtr
 
 freqs = index.freq * 1d9

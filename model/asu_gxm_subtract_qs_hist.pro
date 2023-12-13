@@ -63,7 +63,9 @@ for k = 0, 20 do begin
     if right ne 0 then begin
         idxs = [idxs, indgen(right)+main_peak[1]]
     endif
-    center_l = asu_gxm_subtract_qs_hist_find_peak(h[idxs])
+    h = h[idxs]
+    foo = max(h, im)
+    center_l = h[im]
     p_ratio = double(center_m)/double(center_l)
     if prev ne !NULL && p_ratio le p_limit && p_ratio le prev then break
     prev = p_ratio

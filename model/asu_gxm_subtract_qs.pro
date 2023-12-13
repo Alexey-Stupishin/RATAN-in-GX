@@ -7,7 +7,7 @@ err_code = 0
 default, mode, 1
 
 sz = size(data)
-if mode eq 99 then begin
+if mode eq 2 then begin
     if n_elements(levels) eq 0 then err_code = 1 & return, !NULL
     if n_elements(levels) ne sz[3] then err_code = 2 & return, !NULL
 endif

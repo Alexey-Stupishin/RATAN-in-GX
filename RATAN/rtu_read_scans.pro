@@ -1,6 +1,8 @@
 ; rtu_read_scans
 ; Reads RATAN scans (format version 1.0.20.520)
 ;
+; v 1.1.23.1213 (rev.799)
+;
 ; Parameters description (see also section Comments below):
 ;
 ; Parameters required (in):
@@ -9,7 +11,7 @@
 ; Parameters required (out):
 ;   scans_R     (2-D double)   - observed scans, R-polarisation (sfu/arcsec). 1-D - scans themselves, 2-D - frequencies (see Comment (*), (**))
 ;   scans_L     (2-D double)   - observed scans, L-polarisation (sfu/arcsec). 1-D - scans themselves, 2-D - frequencies (see Comment (*), (**))
-;   xarc        (1-D double)   - positions of scan points (arcsec) (see Comment (***))
+;   xarc        (1-D double)   - positions of scan points (arcsec)
 ;   freqs       (1-D double)   - observation frequencies (Hz)
 ;   pos_angle   (double)       - RATAN positional angle (degrees)
 ;
@@ -22,8 +24,7 @@
 ; Comments:
 ;   (*)   Quiet Sun level was subtracted!
 ;   (**)  Left and Right polarization scans might be swapped (if SWAP_RL field in the header is defined and not zero)
-;   (***) Written to the INDEX.SHIFT_HMI. Can be used to correct scan positioning (xarc += index.SHIFT_HMI). 
-;           Zero if SHIFT_HMI field in the file header is not defined.
+;   (***) INDEX.SHIFT_HMI, if not sero, can be used to correct scan positioning (xarc += index.SHIFT_HMI). 
 ;
 ; (c) Alexey G. Stupishin, Saint Petersburg State University, Saint Petersburg, Russia, 2020-2023
 ;     mailto:agstup@yandex.ru

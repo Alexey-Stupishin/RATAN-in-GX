@@ -1,7 +1,7 @@
 pro rtu_create_ratan_diagrams, freq, sz, step, basearc, diagrH, diagrV, mode = mode, c = c, b = b
 compile_opt idl2
 
-default, mode, 6
+default, mode, 3
 
 lng = sz[0]
 points = basearc[1]/step[1] + indgen(sz[1])
