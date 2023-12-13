@@ -20,9 +20,10 @@
 ;   verbose     (integer, key) - if set, forces header info console output
 ;   
 ; Comments:
-;   (*) Quiet Sun level was subtracted!
-;   (**) Left and Right polarization scans might be swapped (if SWAP_RL field in the header is defined and not zero)
-;   (***) If SHIFT_HMI field in the header is defined, it can be used to correct scan positioning (xarc += SHIFT_HMI)
+;   (*)   Quiet Sun level was subtracted!
+;   (**)  Left and Right polarization scans might be swapped (if SWAP_RL field in the header is defined and not zero)
+;   (***) Written to the INDEX.SHIFT_HMI. Can be used to correct scan positioning (xarc += index.SHIFT_HMI). 
+;           Zero if SHIFT_HMI field in the file header is not defined.
 ;
 ; (c) Alexey G. Stupishin, Saint Petersburg State University, Saint Petersburg, Russia, 2020-2023
 ;     mailto:agstup@yandex.ru
