@@ -59,7 +59,7 @@ pro asu_gxm_maplist2scans, maplist $ ; obligatory in, data R/L, sfu
                          , scans, xarc $ % obligatory out
                          , beam_mode = beam_mode, scan_lim = scan_lim $
                          , pos_angle = pos_angle, freqs = freqs, tolerance = tolerance $ ; optional in
-                         , subtr_data = subtr_data $ ; optional in
+                         , subtr_mode = subtr_mode, subtr_data = subtr_data $ ; optional in
                          , freq_set = freq_set, out_data = out_data, out_index = out_index ; optional out
 compile_opt idl2
 

@@ -11,6 +11,7 @@ See [Licence](https://github.com/Alexey-Stupishin/RATAN-in-GX/blob/main/LICENCE.
 * 09 Nov 2023: Refactoring, parameters improvement, polishing
 * 14-17 Nov 2023: Add RATAN scans read utility
 * 13 Dec 2023: Refactoring, polishing, comments
+* 27 Jan 2024: Missing parameter added (doesn't affect current using)
 
 Current using:
 * [GX_SIMULATOR](https://github.com/Gelu-Nita/GX_SIMULATOR)
