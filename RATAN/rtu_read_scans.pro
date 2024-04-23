@@ -41,8 +41,8 @@
 ;-------------------------------------------------------------------------------------------------
 pro rtu_read_scans, filename $ ; in
                   , scans_R, scans_L, xarc, freqs, pos_angle $ ; out
-                  , date_obs = date_obs, index = index, parstr = parstr $ ; optional out
-                  , verbose = verbose ; optional out
+                  , verbose = verbose $ ; optional in
+                  , date_obs = date_obs, index = index, parstr = parstr ; optional out
 compile_opt idl2
 
 openr, unit, filename, /GET_LUN 
