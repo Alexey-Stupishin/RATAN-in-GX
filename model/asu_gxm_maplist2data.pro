@@ -22,7 +22,7 @@ for k = 0, nlist-1 do begin
     map_k = rmap[k]
     if data eq !NULL then begin
         asu_gxm_get_index, map_k, index1
-        data = dblarr(sz[1], sz[2], nlist)
+        data = reform(dblarr(sz[1], sz[2], nlist), sz[1], sz[2], nlist)
         index = replicate(index1, nlist)
     endif
     asu_gxm_map2data, map_k, data1, index1
